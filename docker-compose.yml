@@ -34,6 +34,16 @@ services:
       - "MYSQL_ROOT_PASSWORD=secret"
     ports:
       - 33061:3306
-
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      links: 
+          - database:database
+      ports:
+          - 8000:80
+      environment:
+          MYSQL_USER: homestead
+          MYSQL_PASSWORD: secret
+          MYSQL_ROOT_PASSWORD: secret
+          PMA_HOST: database
 volumes:
   dbdata:
